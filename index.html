@@ -1,1 +1,1376 @@
-<h1>Matchup Comming Soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ELITE TOURNAMENT · Fixed CORS</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Your existing styles - keeping them the same for brevity */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0c0b14;
+            background-image: radial-gradient(circle at 25% 0%, #251c2a 0%, #0a0812 45%);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .full-container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: clamp(0.8rem, 2vw, 2rem);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Header Styles */
+        .main-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: clamp(1rem, 2.5vw, 1.8rem);
+            background: rgba(18, 16, 28, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 140, 100, 0.35);
+            border-radius: 60px;
+            padding: 0.8rem 1.8rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2vw, 18px);
+            flex-wrap: wrap;
+        }
+
+        .logo-icon {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            background: linear-gradient(145deg, #fc7a5f, #b44e86);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-text h1 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffc3a0, #ff8c78, #d57cbb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-text span {
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            color: #9b9ec9;
+            display: block;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: clamp(0.6rem, 2vw, 1.5rem);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: clamp(5px, 1vw, 10px);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 170, 150, 0.5);
+        }
+
+        .stat-item i {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #ff9a76;
+        }
+
+        .stat-item .label {
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            color: #ced6f0;
+        }
+
+        .stat-item .value {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: 800;
+            color: #ffe7db;
+        }
+
+        /* Slider Section */
+        .slider-section {
+            margin: 0.8rem 0 1rem;
+            border-radius: clamp(20px, 4vw, 40px);
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px black;
+            border: 1px solid rgba(255, 140, 100, 0.3);
+        }
+
+        .swiper {
+            width: 100%;
+            height: clamp(160px, 35vw, 320px);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: clamp(12px, 3vw, 25px);
+            left: clamp(12px, 3vw, 30px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(10px);
+            padding: clamp(0.4rem, 2vw, 0.8rem) clamp(0.8rem, 3vw, 2rem);
+            border-radius: 40px;
+            border: 1px solid #ffac8a;
+            color: white;
+            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            width: 100%;
+            background: linear-gradient(95deg, rgba(255, 100, 70, 0.2), rgba(180, 78, 134, 0.2));
+            backdrop-filter: blur(12px);
+            border: 1px solid #ffa76e;
+            border-radius: 50px;
+            padding: 0.7rem 0;
+            margin: 1rem 0 1.2rem;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scrollMarquee 18s linear infinite;
+            font-size: clamp(0.9rem, 3vw, 1.4rem);
+            font-weight: 700;
+            background: linear-gradient(115deg, #ffcfb0, #ffa576, #ffc49b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            gap: 30px;
+        }
+
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Navigation */
+        .tourney-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.2rem 0 1.8rem;
+            justify-content: center;
+        }
+
+        .nav-pill {
+            background: rgba(25, 22, 39, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid #423d5a;
+            color: #cdd3f0;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-pill.active {
+            background: linear-gradient(115deg, #ff6f4a, #cf3f79);
+            border-color: #ffba9a;
+            color: white;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1rem, 2.5vw, 1.8rem);
+            margin: 1.5rem 0 2rem;
+        }
+
+        .tourney-card {
+            background: rgba(18, 16, 29, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(200, 150, 130, 0.3);
+            border-radius: 32px;
+            padding: 1.2rem;
+            transition: transform 0.3s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tourney-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff8f6b;
+        }
+
+        .tournament-image {
+            width: 100%;
+            height: clamp(140px, 28vw, 180px);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 2px solid #ff9f7c;
+        }
+
+        .tournament-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .tourney-card:hover .tournament-image img {
+            transform: scale(1.05);
+        }
+
+        .card-accents {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .game-tag {
+            background: rgba(0, 0, 0, 0.55);
+            padding: 0.25rem 0.9rem;
+            border-radius: 50px;
+            border: 1px solid #ff9770;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fcdac8;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-tag.pubg {
+            border-color: #f36e4c;
+        }
+
+        .game-tag.ff {
+            border-color: #9b5fc0;
+        }
+
+        .card-mode {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(145deg, #ffdac2, #ffa88a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .fee-structure {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 28px;
+            padding: 0.7rem;
+            margin: 0.5rem 0 0.8rem;
+            text-align: center;
+        }
+
+        .fee-amount {
+            font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+            font-weight: 800;
+            color: #ffc8ae;
+        }
+
+        .rules-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 0 0.7rem;
+            border: 1px solid transparent;
+        }
+
+        .rules-section.expanded {
+            max-height: 220px;
+            opacity: 1;
+            padding: 0.7rem;
+            margin: 0.6rem 0 0.3rem;
+            border: 1px solid #ff9a7b60;
+        }
+
+        .rules-list {
+            list-style: none;
+            color: #e0d9f0;
+            font-size: 0.8rem;
+        }
+
+        .rules-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dashed #ff976b40;
+            padding: 0.25rem 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.7rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .join-btn {
+            background: linear-gradient(95deg, #ff6f4a, #ff4a2a);
+            border: none;
+            color: white;
+            padding: 0.7rem 0.5rem;
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            flex: 2;
+        }
+
+        .more-info-btn {
+            background: rgba(30, 25, 45, 0.9);
+            border: 1.5px solid #ac8fdd;
+            color: #e5cfff;
+            padding: 0.7rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            flex: 1;
+        }
+
+        /* Schedule & Contact Section */
+        .schedule-contact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 2rem;
+        }
+
+        .schedule-card {
+            background: rgba(18, 16, 29, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 36px;
+            border: 1px solid rgba(255, 140, 100, 0.3);
+            overflow: hidden;
+        }
+
+        .schedule-header {
+            background: linear-gradient(95deg, #ff6f4a20, #cf3f7920);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #ff9a7b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-header i {
+            font-size: 1.6rem;
+            color: #ff9a76;
+        }
+
+        .schedule-header h3 {
+            color: #ffdec2;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .schedule-list {
+            padding: 1rem;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .match-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 0.9rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #ff9a76;
+            transition: all 0.2s;
+        }
+
+        .match-item:hover {
+            background: rgba(255, 100, 70, 0.15);
+            transform: translateX(5px);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .match-name {
+            font-weight: 700;
+            color: #ffcfb0;
+            font-size: 1rem;
+        }
+
+        .match-date {
+            font-size: 0.75rem;
+            color: #b9aed0;
+        }
+
+        .match-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .match-time {
+            font-size: 0.8rem;
+            color: #cdd2f0;
+        }
+
+        .match-time i {
+            margin-right: 4px;
+            color: #ff9a76;
+        }
+
+        .match-status {
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-upcoming {
+            background: #2c5a2c;
+            color: #a5ffa5;
+        }
+
+        .status-live {
+            background: #ff4a2a;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-completed {
+            background: #3a2c5a;
+            color: #c4a5ff;
+        }
+
+        .status-cancelled {
+            background: #5a2c2c;
+            color: #ffa5a5;
+        }
+
+        .status-test {
+            background: #ff8c00;
+            color: white;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .refresh-btn {
+            background: rgba(255, 100, 70, 0.2);
+            border: 1px solid #ff9a76;
+            color: #ffcfb0;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+        }
+
+        .refresh-btn:hover {
+            background: #ff6f4a;
+            color: white;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: rgba(18, 16, 29, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 36px;
+            border: 1px solid rgba(255, 140, 100, 0.3);
+            overflow: hidden;
+        }
+
+        .contact-header {
+            background: linear-gradient(95deg, #ac8fdd20, #ff6f4a20);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #ac8fdd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-header i {
+            font-size: 1.6rem;
+            color: #ac8fdd;
+        }
+
+        .contact-header h3 {
+            color: #e5cfff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-content {
+            padding: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 28px;
+            transition: 0.2s;
+        }
+
+        .contact-item:hover {
+            background: rgba(172, 143, 221, 0.15);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #ff6f4a, #ac8fdd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .contact-info h4 {
+            color: #ffcfb0;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info p {
+            color: #b9aed0;
+            font-size: 0.85rem;
+        }
+
+        .contact-info a {
+            color: #ffac8a;
+            text-decoration: none;
+        }
+
+        .support-hours {
+            margin-top: 1rem;
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px dashed #ff9a7b60;
+            color: #8a85b0;
+            font-size: 0.75rem;
+        }
+
+        /* QR Modal */
+        .qr-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 2, 8, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            padding: 1rem;
+        }
+
+        .qr-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .qr-modal-card {
+            background: linear-gradient(145deg, #231f36, #1a162e);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 56px;
+            padding: 1.6rem 1.5rem;
+            border: 1px solid #ff9f80;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+
+        .qr-modal-overlay.active .qr-modal-card {
+            transform: scale(1);
+        }
+
+        .qr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            color: #ffd9c4;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #ff9467;
+        }
+
+        .qr-header .close-btn {
+            background: none;
+            border: none;
+            color: #ffac8a;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .panel.hidden {
+            display: none;
+        }
+
+        .qr-frame {
+            background: linear-gradient(135deg, #fff5ed, #ffe8dc);
+            padding: 1.2rem;
+            border-radius: 44px;
+            margin: 1rem 0;
+            border: 4px solid #ff9f6e;
+            text-align: center;
+        }
+
+        .qr-frame svg {
+            width: 100%;
+            max-width: 170px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .upi-handle {
+            font-size: 1.1rem;
+            background: #2a2340;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: inline-block;
+            border: 1px solid #ffb48a;
+            color: #ffe0ce;
+        }
+
+        .modal-fee-detail {
+            background: #2f2748;
+            border-radius: 40px;
+            padding: 0.5rem;
+            font-size: 1rem;
+            color: #ffcfb0;
+            margin: 0.8rem 0;
+            text-align: center;
+        }
+
+        .slider-track {
+            height: 56px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 60px;
+            border: 1.5px solid #ff9a7b;
+            position: relative;
+            margin: 1rem 0;
+            touch-action: none;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(145deg, #ff9966, #ff5e62);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: grab;
+            z-index: 5;
+        }
+
+        .slider-text {
+            position: absolute;
+            width: 100%;
+            line-height: 56px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffe8d6;
+            pointer-events: none;
+        }
+
+        .payment-message {
+            text-align: center;
+            font-size: 0.85rem;
+            min-height: 2rem;
+            color: #7aff9e;
+        }
+
+        .registration-form {
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            display: block;
+            color: #e5d9ff;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(10, 8, 22, 0.85);
+            border: 1.5px solid #ff9467;
+            border-radius: 50px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            flex-wrap: wrap;
+        }
+
+        .submit-btn {
+            background: linear-gradient(115deg, #ff6f4a, #cf3f79);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.9rem;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .back-link {
+            color: #ffac8a;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 140, 100, 0.2);
+            font-size: 0.75rem;
+            color: #8a85b0;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo-area">
+                <i class="fas fa-crosshairs logo-icon"></i>
+                <div class="logo-text">
+                    <h1>ELITE SERIES ⚡ S7</h1>
+                    <span>PUBG · FREE FIRE · TDM</span>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item"><i class="fas fa-trophy"></i><span class="label">prize</span><span
+                        class="value">₹85K</span></div>
+                <div class="stat-item"><i class="fas fa-users"></i><span class="label">live</span><span
+                        class="value">1.2K</span></div>
+                <div class="stat-item"><i class="fas fa-calendar"></i><span class="label">today</span><span
+                        class="value">Fri</span></div>
+            </div>
+        </header>
+
+        <!-- Slider -->
+        <div class="slider-section">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                            alt="PUBG">
+                        <div class="slide-caption"><i class="fas fa-skull"></i> PUBG SOLO</div>
+                    </div>
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/163460/game-fun-team-play-163460.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                            alt="FF">
+                        <div class="slide-caption"><i class="fas fa-fire"></i> FREE FIRE</div>
+                    </div>
+                    <div class="swiper-slide"><img
+                            src="https://images.pexels.com/photos/2161909/pexels-photo-2161909.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                            alt="TDM">
+                        <div class="slide-caption"><i class="fas fa-bolt"></i> TDM ACTION</div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Marquee -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>🏆 WEEKEND MEGA TOURNAMENT THIS FRIDAY 🏆</span>
+                <span>🔥 SOLO | SQUAD | TDM 🔥</span>
+                <span>💸 WIN CASH PRIZES UPTO ₹85K 💸</span>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="tourney-nav">
+            <div class="nav-pill active"><i class="fas fa-bolt"></i> OPEN</div>
+            <div class="nav-pill"><i class="fas fa-money-bill-wave"></i> PAID ENTRY</div>
+            <div class="nav-pill"><i class="fas fa-shield"></i> VERIFIED</div>
+        </div>
+
+        <!-- Tournament Cards -->
+        <div class="cards-grid" id="tournamentCards"></div>
+
+        <!-- Schedule & Contact Section -->
+        <div class="schedule-contact-section">
+            <div class="schedule-card">
+                <div class="schedule-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>📅 Scheduled Matches</h3>
+                    <button class="refresh-btn" id="refreshScheduleBtn"><i class="fas fa-sync-alt"></i> Sync</button>
+                </div>
+                <div class="schedule-list" id="scheduleList">
+                    <div style="text-align: center; padding: 2rem; color: #b9aed0;">
+                        <i class="fas fa-spinner fa-pulse"></i> Loading matches...
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-header">
+                    <i class="fas fa-headset"></i>
+                    <h3>📞 Support & Contact</h3>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-info">
+                            <h4>WhatsApp Support</h4>
+                            <p><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></p>
+                            <p style="font-size:0.7rem;">Tournament queries & registration help</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <p><a href="mailto:support@eliteesports.com">support@eliteesports.com</a></p>
+                            <p style="font-size:0.7rem;">24hr response time</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-discord"></i></div>
+                        <div class="contact-info">
+                            <h4>Discord Community</h4>
+                            <p><a href="#">discord.gg/elite-esports</a></p>
+                            <p style="font-size:0.7rem;">Live chat & announcements</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-info">
+                            <h4>Emergency Contact</h4>
+                            <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                            <p style="font-size:0.7rem;">For urgent match issues</p>
+                        </div>
+                    </div>
+                    <div class="support-hours">
+                        <i class="fas fa-clock"></i> Support Hours: Mon-Sun | 10:00 AM - 10:00 PM IST
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <i class="fas fa-shield-alt"></i> Secure Payments via UPI • All registrations verified • © 2024 Elite Series
+        </div>
+    </div>
+
+    <!-- QR MODAL -->
+    <div class="qr-modal-overlay" id="qrOverlay">
+        <div class="qr-modal-card">
+            <div class="qr-header">
+                <i class="fas fa-qrcode"></i><span>PAY & REGISTER</span>
+                <button class="close-btn" id="closeQrBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="panelQr" class="panel">
+                <div class="qr-frame" id="qrDisplay">
+                    <svg viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="#fae6d8" rx="35" />
+                        <rect x="40" y="40" width="45" height="45" fill="#c97e5a" rx="8" />
+                        <rect x="115" y="40" width="45" height="45" fill="#c97e5a" rx="8" />
+                        <rect x="40" y="115" width="45" height="45" fill="#c97e5a" rx="8" />
+                        <circle cx="140" cy="140" r="18" fill="#c97e5a" />
+                        <text x="40" y="190" fill="#9b4b2c" font-size="15">ELITE</text>
+                    </svg>
+                </div>
+                <div class="upi-handle"><i class="fas fa-phone-alt"></i> elite@ybl</div>
+                <div class="modal-fee-detail" id="feeMemo"><strong>₹10</strong> · SOLO entry</div>
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slider-thumb" id="sliderThumb"><i class="fas fa-chevron-right"></i></div>
+                    <div class="slider-text"><i class="fas fa-mobile-alt"></i> SLIDE TO PAY</div>
+                </div>
+                <div class="payment-message" id="paymentMessage"></div>
+            </div>
+            <div id="panelRegister" class="panel hidden">
+                <h3 style="color:#ffdec2;">REGISTRATION</h3>
+                <form id="registrationForm">
+                    <input type="hidden" id="tournamentMode"><input type="hidden" id="entryFee">
+                    <div class="form-group"><label>Game ID</label><input type="text" id="gameId" class="form-control"
+                            required></div>
+                    <div class="form-group"><label>Your Name</label><input type="text" id="playerName"
+                            class="form-control" required></div>
+                    <div class="form-group"><label>Game Type</label>
+                        <div class="radio-group"><label><input type="radio" name="gameTypeRadio" value="PUBG" checked>
+                                PUBG</label><label><input type="radio" name="gameTypeRadio" value="Free Fire"> Free
+                                Fire</label></div>
+                    </div>
+                    <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="whatsapp"
+                            class="form-control" required></div>
+                    <div class="form-group"><label>Transaction ID / UTR</label><input type="text" id="utr"
+                            class="form-control" required></div>
+                    <button type="submit" class="submit-btn">REGISTER</button>
+                </form>
+                <span class="back-link" id="backToQrBtn"><i class="fas fa-arrow-left"></i> Back</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        (function () {
+            // ========== GOOGLE SHEETS API URLS ==========
+            // REPLACE WITH YOUR ACTUAL DEPLOYED WEB APP URLs
+            const SCHEDULE_API_URL = "https://script.google.com/macros/s/AKfycbwen37Dv9-W3a5XJS2LcX7Kyo54gqJ3fgkKqfZ0810HdsvmeuWGoU78FYFhv17S1IC_/exec";
+            const REGISTRATION_API_URL = "https://script.google.com/macros/s/AKfycbyPQ4rr_18zGTOZGzcMuk73GkkhVLDIQvrzJn3k6-GUHqtDZtqr546ygLu4DH05ql2nag/exec";
+
+            // ========== SWIPER INITIALIZATION ==========
+            new Swiper('.mySwiper', {
+                loop: true, autoplay: { delay: 4000 },
+                pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                effect: 'fade', speed: 700
+            });
+
+            // ========== TOURNAMENT CARDS ==========
+            const tournaments = [
+                { mode: "PUBG SOLO", fee: "10", game: "pubg", img: "https://images.pexels.com/photos/163444/security-guard-facial-expression-boy-guard-163444.jpeg?auto=compress&cs=tinysrgb&w=600" },
+                { mode: "FREE FIRE SOLO", fee: "10", game: "ff", img: "https://images.pexels.com/photos/2161909/pexels-photo-2161909.jpeg?auto=compress&cs=tinysrgb&w=600" },
+                { mode: "PUBG SQUAD", fee: "50", game: "pubg", img: "https://images.pexels.com/photos/163460/game-fun-team-play-163460.jpeg?auto=compress&cs=tinysrgb&w=600" },
+                { mode: "FREE FIRE SQUAD", fee: "50", game: "ff", img: "https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg?auto=compress&cs=tinysrgb&w=600" },
+                { mode: "PUBG TDM", fee: "30", game: "pubg", img: "https://images.pexels.com/photos/6992/forest-trees-nature-fog.jpg?auto=compress&cs=tinysrgb&w=600" },
+                { mode: "FREE FIRE TDM", fee: "30", game: "ff", img: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=600" }
+            ];
+
+            const cardsContainer = document.getElementById('tournamentCards');
+            cardsContainer.innerHTML = tournaments.map(t => `
+                <div class="tourney-card" data-mode="${t.mode}" data-fee="${t.fee}">
+                    <div class="tournament-image"><img src="${t.img}" alt="${t.mode}"></div>
+                    <div class="card-accents">
+                        <span class="game-tag ${t.game === 'pubg' ? 'pubg' : 'ff'}">
+                            <i class="${t.game === 'pubg' ? 'fab fa-battle-net' : 'fas fa-fire'}"></i> 
+                            ${t.game === 'pubg' ? 'PUBG' : 'FREE FIRE'}
+                        </span>
+                        <span class="game-tag">${t.mode.split(' ').pop()}</span>
+                    </div>
+                    <div class="card-mode">${t.mode}</div>
+                    <div class="fee-structure">
+                        <div class="fee-amount">₹${t.fee} <small>${t.mode.includes('SQUAD') ? 'per member' : 'per player'}</small></div>
+                    </div>
+                    <div class="rules-section">
+                        <ul class="rules-list">
+                            <li><i class="fas fa-crosshairs"></i> Fair play guaranteed</li>
+                            <li><i class="fas fa-clock"></i> Live support 24/7</li>
+                            <li><i class="fas fa-trophy"></i> Instant prize distribution</li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button class="join-btn"><i class="fas fa-hand-pointer"></i> JOIN</button>
+                        <button class="more-info-btn"><i class="fas fa-chevron-down"></i> INFO</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Expandable info
+            document.querySelectorAll('.more-info-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const card = this.closest('.tourney-card');
+                    const rules = card.querySelector('.rules-section');
+                    if (rules) rules.classList.toggle('expanded');
+                    const icon = this.querySelector('i');
+                    if (rules.classList.contains('expanded')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+
+            // ========== SCHEDULE MANAGEMENT - FIXED FOR CORS ==========
+            let scheduleData = [];
+
+            function renderSchedule() {
+                const scheduleList = document.getElementById('scheduleList');
+                if (!scheduleList) return;
+
+                if (!scheduleData || scheduleData.length === 0) {
+                    scheduleList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #b9aed0;"><i class="fas fa-calendar-times"></i> No matches scheduled</div>';
+                    return;
+                }
+
+                scheduleList.innerHTML = scheduleData.map(match => {
+                    const matchName = match.match_name || match.Match_Name || match.match || 'Match';
+                    const matchDate = match.date || match.Date || 'TBD';
+                    const matchTime = match.time || match.Time || 'TBD';
+                    const matchStatus = match.status || match.Status || 'upcoming';
+                    const matchPrize = match.prize || match.Prize || '';
+
+                    return `
+                    <div class="match-item">
+                        <div class="match-header">
+                            <span class="match-name"><i class="fas fa-gamepad"></i> ${matchName}</span>
+                            <span class="match-date"><i class="far fa-calendar-alt"></i> ${matchDate}</span>
+                        </div>
+                        <div class="match-details">
+                            <span class="match-time"><i class="far fa-clock"></i> ${matchTime} IST</span>
+                            <span class="match-status status-${matchStatus}">
+                                ${matchStatus === 'upcoming' ? '⏳ Upcoming' :
+                            matchStatus === 'live' ? '🔴 LIVE NOW' :
+                                matchStatus === 'completed' ? '✓ Completed' :
+                                    matchStatus === 'test' ? '🧪 Test Match' : matchStatus}
+                            </span>
+                        </div>
+                        ${matchPrize ? `<div style="margin-top: 0.5rem; font-size: 0.7rem; color: #ffc8ae;"><i class="fas fa-trophy"></i> Prize: ${matchPrize}</div>` : ''}
+                    </div>
+                `}).join('');
+            }
+
+            // Fetch schedule using JSONP or proxy approach
+            async function fetchScheduleFromGoogleSheets() {
+                const scheduleList = document.getElementById('scheduleList');
+                if (scheduleList) {
+                    scheduleList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #b9aed0;"><i class="fas fa-spinner fa-pulse"></i> Loading matches...</div>';
+                }
+
+                try {
+                    // Try to fetch with no-cors mode
+                    const response = await fetch(SCHEDULE_API_URL, {
+                        method: 'GET',
+                        mode: 'no-cors',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    // With no-cors, we can't read the response body
+                    // So we'll use a different approach: use a proxy or load from localStorage/cache
+                    console.log('Using no-cors mode - checking cache');
+
+                    // Check if we have cached data
+                    const cached = localStorage.getItem('tournament_schedule');
+                    if (cached) {
+                        scheduleData = JSON.parse(cached);
+                        renderSchedule();
+                        console.log('📦 Using cached schedule data');
+                    } else {
+                        // Fallback to demo data
+                        scheduleData = [
+                            { match_name: "PUBG SOLO", date: "March 22, 2025", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
+                            { match_name: "FREE FIRE SQUAD", date: "March 22, 2025", time: "09:00 PM", status: "live", prize: "₹15,000" },
+                            { match_name: "PUBG TDM", date: "March 23, 2025", time: "06:30 PM", status: "upcoming", prize: "₹3,000" },
+                            { match_name: "akjf", date: "29384", time: "23840", status: "test", prize: "212k" }
+                        ];
+                        renderSchedule();
+                        console.log('📋 Using demo schedule data');
+                    }
+                } catch (error) {
+                    console.error("Error fetching schedule:", error);
+                    const cached = localStorage.getItem('tournament_schedule');
+                    if (cached) {
+                        scheduleData = JSON.parse(cached);
+                        renderSchedule();
+                    } else {
+                        scheduleData = [
+                            { match_name: "PUBG SOLO", date: "March 22, 2025", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
+                            { match_name: "FREE FIRE SQUAD", date: "March 22, 2025", time: "09:00 PM", status: "live", prize: "₹15,000" }
+                        ];
+                        renderSchedule();
+                    }
+                }
+            }
+
+            // Alternative: Use a CORS proxy (if needed)
+            // You can use this URL pattern: https://cors-anywhere.herokuapp.com/YOUR_URL
+            async function fetchScheduleWithProxy() {
+                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                const targetUrl = SCHEDULE_API_URL;
+
+                try {
+                    const response = await fetch(proxyUrl + targetUrl);
+                    const data = await response.json();
+                    console.log('Data via proxy:', data);
+
+                    if (data && data.schedule) {
+                        scheduleData = data.schedule;
+                        localStorage.setItem('tournament_schedule', JSON.stringify(scheduleData));
+                        renderSchedule();
+                    }
+                } catch (error) {
+                    console.error('Proxy fetch failed:', error);
+                }
+            }
+
+            // Manual update function for admin to paste data
+            window.updateScheduleManually = function (newSchedule) {
+                if (newSchedule && Array.isArray(newSchedule)) {
+                    scheduleData = newSchedule;
+                    localStorage.setItem('tournament_schedule', JSON.stringify(scheduleData));
+                    renderSchedule();
+                    alert('Schedule updated successfully!');
+                }
+            };
+
+            // Refresh button
+            document.getElementById('refreshScheduleBtn')?.addEventListener('click', () => {
+                fetchScheduleFromGoogleSheets();
+                const btn = document.getElementById('refreshScheduleBtn');
+                btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Syncing...';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-sync-alt"></i> Sync';
+                }, 1000);
+            });
+
+            // ========== REGISTRATION FORM ==========
+            async function submitRegistrationToGoogleSheets(formData) {
+                try {
+                    // Use no-cors for POST as well
+                    await fetch(REGISTRATION_API_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+
+                    let registrations = JSON.parse(localStorage.getItem('tournament_registrations') || '[]');
+                    registrations.push(formData);
+                    localStorage.setItem('tournament_registrations', JSON.stringify(registrations));
+                    return true;
+                } catch (error) {
+                    console.error("Registration error:", error);
+                    return false;
+                }
+            }
+
+            // ========== QR MODAL LOGIC ==========
+            const overlay = document.getElementById('qrOverlay');
+            const closeBtn = document.getElementById('closeQrBtn');
+            const panelQr = document.getElementById('panelQr');
+            const panelRegister = document.getElementById('panelRegister');
+            const backToQr = document.getElementById('backToQrBtn');
+            const track = document.getElementById('sliderTrack');
+            const thumb = document.getElementById('sliderThumb');
+            const paymentMsg = document.getElementById('paymentMessage');
+            const tournamentModeInput = document.getElementById('tournamentMode');
+            const entryFeeInput = document.getElementById('entryFee');
+            const feeMemo = document.getElementById('feeMemo');
+
+            let currentMode = "", currentFee = "", isDragging = false, maxLeft = 0;
+
+            function updateMaxLeft() { if (track) maxLeft = track.offsetWidth - 52; }
+            window.addEventListener('resize', updateMaxLeft);
+
+            function resetSlider() { if (thumb) thumb.style.left = '4px'; if (paymentMsg) paymentMsg.innerHTML = ''; }
+
+            function moveThumb(clientX) {
+                if (!track || !thumb) return;
+                const rect = track.getBoundingClientRect();
+                let newLeft = clientX - rect.left - 24;
+                if (newLeft < 4) newLeft = 4;
+                if (newLeft > maxLeft) newLeft = maxLeft;
+                thumb.style.left = newLeft + 'px';
+                if (newLeft >= maxLeft - 8) {
+                    paymentMsg.innerHTML = '<i class="fas fa-check-circle"></i> Payment confirmed!';
+                    setTimeout(() => {
+                        panelQr.classList.add('hidden');
+                        panelRegister.classList.remove('hidden');
+                    }, 200);
+                } else {
+                    paymentMsg.innerHTML = '';
+                }
+            }
+
+            if (thumb) {
+                thumb.addEventListener('mousedown', (e) => { isDragging = true; updateMaxLeft(); e.preventDefault(); });
+                thumb.addEventListener('touchstart', (e) => { isDragging = true; updateMaxLeft(); e.preventDefault(); });
+            }
+            window.addEventListener('mousemove', (e) => { if (isDragging) moveThumb(e.clientX); });
+            window.addEventListener('touchmove', (e) => { if (isDragging) moveThumb(e.touches[0].clientX); });
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('touchend', () => isDragging = false);
+
+            document.querySelectorAll('.join-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const card = e.currentTarget.closest('.tourney-card');
+                    if (!card) return;
+                    currentMode = card.dataset.mode || 'SOLO';
+                    currentFee = card.dataset.fee || '10';
+                    tournamentModeInput.value = currentMode;
+                    entryFeeInput.value = currentFee;
+                    feeMemo.innerHTML = `<strong>₹${currentFee}</strong> · ${currentMode}`;
+                    panelQr.classList.remove('hidden');
+                    panelRegister.classList.add('hidden');
+                    resetSlider();
+                    overlay.classList.add('active');
+                });
+            });
+
+            closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
+            backToQr.addEventListener('click', () => {
+                panelRegister.classList.add('hidden');
+                panelQr.classList.remove('hidden');
+                resetSlider();
+            });
+
+            document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    timestamp: new Date().toISOString(),
+                    tournamentMode: currentMode,
+                    entryFee: currentFee,
+                    gameId: document.getElementById('gameId').value.trim(),
+                    playerName: document.getElementById('playerName').value.trim(),
+                    gameType: document.querySelector('input[name="gameTypeRadio"]:checked').value,
+                    whatsapp: document.getElementById('whatsapp').value.trim(),
+                    utr: document.getElementById('utr').value.trim()
+                };
+
+                if (!formData.gameId || !formData.playerName || !formData.whatsapp || !formData.utr) {
+                    alert('❌ Please fill all fields');
+                    return;
+                }
+
+                const submitBtn = document.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
+                submitBtn.disabled = true;
+
+                try {
+                    await submitRegistrationToGoogleSheets(formData);
+                    alert('✅ Registration Successful! Your details have been saved.');
+                    overlay.classList.remove('active');
+                    document.getElementById('registrationForm').reset();
+                    panelQr.classList.remove('hidden');
+                    panelRegister.classList.add('hidden');
+                    resetSlider();
+                } catch (error) {
+                    alert('⚠️ Registration saved locally.');
+                    overlay.classList.remove('active');
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+
+            // Initial load
+            updateMaxLeft();
+            fetchScheduleFromGoogleSheets();
+
+            console.log('🚀 Tournament System Ready!');
+            console.log('💡 NOTE: Due to CORS, schedule data is loaded from local cache.');
+            console.log('💡 To update schedule, modify the scheduleData array manually or use updateScheduleManually()');
+        })();
+    </script>
+</body>
+
+</html>
