@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>BGMI Tournament Rules | Battle Arena</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0c15 0%, #0f121f 100%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Main Container */
+        .rules-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 106, 61, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: #FF6A3D;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 106, 61, 0.3);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .back-button:hover {
+            background: #FF6A3D;
+            color: white;
+            transform: translateX(-5px);
+            border-color: #FF6A3D;
+        }
+
+        /* Rules Section Styling */
+        .rules-section {
+            background: rgba(12, 16, 24, 0.85);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            padding: 32px 28px;
+            border: 1px solid rgba(255, 100, 50, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .rules-section:hover {
+            border-color: #FF6A3D;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .rules-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 100, 50, 0.4);
+        }
+
+        .rules-header i {
+            font-size: 3rem;
+            color: #FF6A3D;
+            text-shadow: 0 0 15px rgba(255, 106, 61, 0.6);
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .rules-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #FFB347, #FF6A3D);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            margin: 10px 0;
+        }
+
+        .rules-subtitle {
+            color: #FFB347;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .rules-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rule-category {
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border-left: 3px solid #FF6A3D;
+        }
+
+        .rule-category:hover {
+            background: rgba(255, 106, 61, 0.08);
+            transform: translateX(5px);
+        }
+
+        .category-icon {
+            flex-shrink: 0;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 106, 61, 0.2);
+            border-radius: 15px;
+            font-size: 1.8rem;
+            color: #FF6A3D;
+            transition: all 0.3s ease;
+        }
+
+        .rule-category:hover .category-icon {
+            background: #FF6A3D;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            flex: 1;
+        }
+
+        .category-content h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFB347;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .category-content h3 i {
+            color: #FF6A3D;
+            margin-right: 8px;
+        }
+
+        .category-content ul,
+        .category-content ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .category-content li {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            margin: 8px 0;
+            line-height: 1.5;
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .category-content ul li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #FF6A3D;
+        }
+
+        .category-content ol li {
+            list-style-type: decimal;
+            padding-left: 5px;
+        }
+
+        .category-content ol li:before {
+            display: none;
+        }
+
+        .category-content li strong {
+            color: #fff;
+        }
+
+        .category-content li i {
+            margin-right: 6px;
+            color: #FF6A3D;
+        }
+
+        .highlight {
+            color: #FFB347;
+            font-weight: 700;
+        }
+
+        .danger {
+            color: #FF4D4D;
+            font-weight: 700;
+        }
+
+        .rule-note {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: rgba(255, 106, 61, 0.15);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #FFB347;
+            border-left: 3px solid #FF6A3D;
+        }
+
+        .rule-note i {
+            margin-right: 6px;
+            color: #FF6A3D;
+        }
+
+        .pro-rules {
+            background: linear-gradient(135deg, rgba(255, 106, 61, 0.1), rgba(0, 0, 0, 0.4));
+            border-left: 3px solid #FFD966;
+        }
+
+        .bonus-tip {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: rgba(255, 217, 102, 0.15);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #FFD966;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .bonus-tip i {
+            font-size: 1.2rem;
+            color: #FFD966;
+        }
+
+        .rules-declaration {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 77, 77, 0.1);
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+        }
+
+        .rules-declaration i {
+            font-size: 1.8rem;
+            color: #FF4D4D;
+            margin-bottom: 10px;
+        }
+
+        .rules-declaration p {
+            margin: 5px 0;
+        }
+
+        .rules-declaration p:first-of-type {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #FF4D4D;
+            letter-spacing: 1px;
+        }
+
+        .declaration-text {
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+
+        .declaration-text i {
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 100, 50, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .rules-section {
+                padding: 20px 16px;
+            }
+
+            .rules-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .rule-category {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .category-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+
+            .category-content h3 {
+                font-size: 1rem;
+            }
+
+            .category-content li {
+                font-size: 0.8rem;
+            }
+
+            .back-button {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0c15;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FF6A3D;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFB347;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rules-wrapper">
+        <!-- Back Button -->
+        <a href="javascript:history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Tournament
+        </a>
+
+        <!-- Rules Section -->
+        <div class="rules-section">
+            <div class="rules-header">
+                <i class="fas fa-scroll"></i>
+                <h1>📜 BGMI Squad Tournament Rules</h1>
+                <p class="rules-subtitle">Professional | Fair Play | Competitive Integrity</p>
+            </div>
+
+            <div class="rules-container">
+                <!-- Rule 1: Basic Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-gamepad"></i> 1. Basic Rules</h3>
+                        <ul>
+                            <li><strong>Match mode:</strong> Squad (TPP/FPP - to be decided by admin)</li>
+                            <li><strong>Map:</strong> Erangel (or as announced by admin)</li>
+                            <li><strong>Team size:</strong> 4 players (no extra/sub without permission)</li>
+                            <li><strong>Room ID & Password:</strong> Will be provided 10 minutes before match</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 2: Entry & Payment Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-rupee-sign"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-rupee-sign"></i> 2. Entry & Payment Rules</h3>
+                        <ul>
+                            <li><strong>Entry fee:</strong> ₹40 per squad</li>
+                            <li>Payment in advance is <strong class="highlight">compulsory</strong></li>
+                            <li><strong class="danger"><i class="fas fa-ban"></i> Fake booking = Direct Ban ❌</strong>
+                            </li>
+                            <li><strong>No refund policy</strong> after match confirmation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 3: Player Eligibility -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-user-check"></i> 3. Player Eligibility (Important)</h3>
+                        <ul>
+                            <li><strong>Minimum level:</strong> Level 40+</li>
+                            <li><strong>Minimum tier:</strong> Platinum or above</li>
+                            <li><strong class="danger"><i class="fas fa-times-circle"></i> New ID / Fresh account = NOT
+                                    ALLOWED ❌</strong></li>
+                            <li>All players must have same team name/tag</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <!-- Rule 4: Anti-Hack Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-shield-haltered"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-shield-haltered"></i> 4. Anti-Hack Rules (Strict)</h3>
+                        <ul>
+                            <li><strong class="danger"><i class="fas fa-skull"></i> ESP / Aimbot / Wall hack = Permanent
+                                    Ban</strong></li>
+                            <li><strong class="danger"><i class="fas fa-tablet-alt"></i> iPad view / Config hack / GFX
+                                    tool abuse = NOT ALLOWED</strong></li>
+                            <li><strong class="danger"><i class="fas fa-desktop"></i> Emulator players = NOT ALLOWED
+                                    (Mobile-only tournament)</strong></li>
+                            <li><strong class="danger"><i class="fas fa-users-slash"></i> Teaming (2 squads playing
+                                    together) = Disqualification</strong></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <!-- Rule 5: Proof Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-video"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-video"></i> 5. Proof Rules</h3>
+                        <ul>
+                            <li>Every team's <strong>squad leader must keep screen recording ON</strong></li>
+                            <li>Kill proof / winner proof screenshot is <strong class="highlight">compulsory</strong>
+                            </li>
+                            <li><strong class="danger"><i class="fas fa-file-excel"></i> Proof not submitted = Kill
+                                    count will NOT be considered ❌</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 6: Kill & Points Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-crosshairs"></i> 6. Kill & Points Rules</h3>
+                        <ul>
+                            <li><strong>Per kill reward:</strong> ₹2 / ₹3 (as decided by admin)</li>
+                            <li><strong>Finish kill only counts</strong> (knock does NOT count)</li>
+                            <li>Self kill / grenade abuse will NOT be counted</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 7: Winner Decision -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-trophy"></i> 7. Winner Decision Priority</h3>
+                        <ol>
+                            <li><i class="fas fa-drumstick-bite"></i> Chicken Dinner 🥇</li>
+                            <li><i class="fas fa-skull"></i> Total kills</li>
+                            <li><i class="fas fa-hourglass-half"></i> Survival time</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Rule 8: Timing Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-clock"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-clock"></i> 8. Timing Rules</h3>
+                        <ul>
+                            <li><strong class="danger"><i class="fas fa-ban"></i> Late entry = NOT ALLOWED</strong></li>
+                            <li>Cannot join room after match starts <i class="fas fa-door-closed"></i> ❌</li>
+                            <li>No remake (except server-wide issue)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 9: Disqualification Rules -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-gavel"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-gavel"></i> 9. Disqualification Rules</h3>
+                        <ul>
+                            <li>Wrong IGN / player change without permission = <strong class="danger">DQ</strong></li>
+                            <li>Hack use = <strong class="danger"><i class="fas fa-ban"></i> Permanent Ban</strong></li>
+                            <li>Abuse / Gaali = <strong class="danger"><i class="fas fa-user-slash"></i> Removal from
+                                    tournament</strong></li>
+                            <li><strong><i class="fas fa-check-double"></i> Admin decision is final (no
+                                    argument)</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Rule 10: Prize Distribution -->
+                <div class="rule-category">
+                    <div class="category-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-wallet"></i> 10. Prize Distribution</h3>
+                        <ul>
+                            <li>Payment within <strong>10–30 minutes</strong> after match</li>
+                            <li>Payment via: <strong><i class="fab fa-google-pay"></i> UPI / <i
+                                        class="fab fa-paypal"></i> Paytm / as decided by admin</strong></li>
+                            <li><strong class="danger"><i class="fas fa-exclamation-triangle"></i> Fake claim =
+                                    Permanent Ban</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Declaration Footer -->
+            <div class="rules-declaration">
+                <i class="fas fa-gavel"></i>
+                <p><strong>⚠️ Admin Decision is Final | No Refund Policy ⚠️</strong></p>
+                <p class="declaration-text"><i class="fas fa-file-signature"></i> By participating, all players agree to
+                    abide by these rules. Any violation will result in immediate disqualification and permanent ban from
+                    future tournaments.</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <p><i class="fas fa-shield-alt"></i> &copy; MatchUp 2026 Powered by www.rebuyly.com</p>
+        </div>
+    </div>
+</body>
+
+</html>
