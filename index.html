@@ -1010,7 +1010,7 @@
                 <div class="qr-frame" id="qrDisplay">
                     <img src="assets/qr/qrcode.png" alt="QR Code" srcset="">
                 </div>
-                <div class="upi-handle"><i class="fas fa-phone-alt"></i> iamkml@ikwik</div>
+                <div class="upi-handle"></div>
                 <div class="modal-fee-detail" id="feeMemo"><strong>₹10</strong> · SOLO entry</div>
                 <div class="slider-track" id="sliderTrack">
                     <div class="slider-thumb" id="sliderThumb"><i class="fas fa-chevron-right"></i></div>
@@ -1269,7 +1269,9 @@
                     currentFee = card.dataset.fee || '10';
                     tournamentModeInput.value = currentMode;
                     entryFeeInput.value = currentFee;
-                    feeMemo.innerHTML = `<strong>₹${currentFee}</strong> · ${currentMode}`;
+                    // feeMemo.innerHTML = `<strong>₹${currentFee}</strong> · ${currentMode}`;
+                    feeMemo.innerHTML = `<strong>₹${currentFee}</strong> · ${currentMode}<br><a href="upi://pay?pa=iamkml@ikwik&am=${currentFee}&tn=${encodeURIComponent(currentMode)}" style="display:inline-block; margin-top:8px; padding:5px 12px; background:#ff6f4a; border-radius:50px; color:white; text-decoration:none; font-size:12px;">Pay via UPI</a>`;
+
                     panelQr.classList.remove('hidden');
                     panelRegister.classList.add('hidden');
                     resetSlider();
