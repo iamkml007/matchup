@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>ELITE TOURNAMENT · Fixed CORS</title>
+    <title>MATCHUP TOURNAMENT</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        /* Your existing styles - keeping them the same for brevity */
         * {
             margin: 0;
             padding: 0;
@@ -109,6 +108,33 @@
         }
 
         .stat-item .value {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: 800;
+            color: #ffe7db;
+        }
+
+        /* Unique class for today date to avoid conflicts */
+        .today-date-item {
+            display: flex;
+            align-items: center;
+            gap: clamp(5px, 1vw, 10px);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 170, 150, 0.5);
+        }
+
+        .today-date-item i {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #ff9a76;
+        }
+
+        .today-date-item .label {
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            color: #ced6f0;
+        }
+
+        .today-date-item .value {
             font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             font-weight: 800;
             color: #ffe7db;
@@ -278,7 +304,7 @@
             gap: 5px;
         }
 
-        .game-tag.pubg {
+        .game-tag.bgmi {
             border-color: #f36e4c;
         }
 
@@ -323,7 +349,7 @@
         }
 
         .rules-section.expanded {
-            max-height: 220px;
+            max-height: 300px;
             opacity: 1;
             padding: 0.7rem;
             margin: 0.6rem 0 0.3rem;
@@ -342,6 +368,11 @@
             gap: 8px;
             border-bottom: 1px dashed #ff976b40;
             padding: 0.25rem 0;
+        }
+
+        .rules-list li a {
+            color: #ffac8a;
+            text-decoration: none;
         }
 
         .btn-group {
@@ -542,7 +573,7 @@
             color: white;
         }
 
-        /* Contact Card */
+        /* Contact Card - Updated with clickable items */
         .contact-card {
             background: rgba(18, 16, 29, 0.85);
             backdrop-filter: blur(12px);
@@ -584,10 +615,12 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 28px;
             transition: 0.2s;
+            cursor: pointer;
         }
 
         .contact-item:hover {
             background: rgba(172, 143, 221, 0.15);
+            transform: translateX(5px);
         }
 
         .contact-icon {
@@ -768,11 +801,6 @@
             color: #7aff9e;
         }
 
-        .registration-form {
-            text-align: left;
-            margin-top: 0.5rem;
-        }
-
         .form-group {
             margin-bottom: 1rem;
         }
@@ -849,17 +877,17 @@
             <div class="logo-area">
                 <i class="fas fa-crosshairs logo-icon"></i>
                 <div class="logo-text">
-                    <h1>ELITE SERIES ⚡ S7</h1>
-                    <span>PUBG · FREE FIRE · TDM</span>
+                    <h1>MATCHUP SERIES ⚡ S1</h1>
+                    <span>BGMI · FREE FIRE · TDM</span>
                 </div>
             </div>
             <div class="header-stats">
                 <div class="stat-item"><i class="fas fa-trophy"></i><span class="label">prize</span><span
-                        class="value">₹85K</span></div>
+                        class="value">₹10K</span></div>
                 <div class="stat-item"><i class="fas fa-users"></i><span class="label">live</span><span
                         class="value">1.2K</span></div>
-                <div class="stat-item"><i class="fas fa-calendar"></i><span class="label">today</span><span
-                        class="value">Fri</span></div>
+                <div class="today-date-item"><i class="fas fa-calendar"></i><span class="label">today</span><span
+                        class="value" id="currentDayDisplay">Mon</span></div>
             </div>
         </header>
 
@@ -867,14 +895,12 @@
         <div class="slider-section">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img
-                            src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                            alt="PUBG">
-                        <div class="slide-caption"><i class="fas fa-skull"></i> PUBG SOLO</div>
+                    <div class="swiper-slide"><img src="assets/img/BGMI.jpeg" alt="BGMI">
+                        <div class="slide-caption"><i class="fas fa-skull"></i> BGMI SOLO</div>
                     </div>
                     <div class="swiper-slide"><img
                             src="https://images.pexels.com/photos/163460/game-fun-team-play-163460.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                            alt="FF">
+                            alt="FREE FIRE">
                         <div class="slide-caption"><i class="fas fa-fire"></i> FREE FIRE</div>
                     </div>
                     <div class="swiper-slide"><img
@@ -894,15 +920,13 @@
             <div class="marquee-content">
                 <span>🏆 WEEKEND MEGA TOURNAMENT THIS FRIDAY 🏆</span>
                 <span>🔥 SOLO | SQUAD | TDM 🔥</span>
-                <span>💸 WIN CASH PRIZES UPTO ₹85K 💸</span>
+                <span>💸 WIN CASH PRIZES UPTO ₹10K 💸</span>
             </div>
         </div>
 
         <!-- Nav -->
         <div class="tourney-nav">
-            <div class="nav-pill active"><i class="fas fa-bolt"></i> OPEN</div>
-            <div class="nav-pill"><i class="fas fa-money-bill-wave"></i> PAID ENTRY</div>
-            <div class="nav-pill"><i class="fas fa-shield"></i> VERIFIED</div>
+            <div class="nav-pill active"><i class="fas fa-money-bill-wave"></i> PAID ENTRY</div>
         </div>
 
         <!-- Tournament Cards -->
@@ -929,35 +953,37 @@
                     <h3>📞 Support & Contact</h3>
                 </div>
                 <div class="contact-content">
-                    <div class="contact-item">
+                    <div class="contact-item"
+                        onclick="window.open('https://wa.me/917878275108?text=Hi%20I%20need%20help%20with%20tournament%20registration', '_blank')">
                         <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                         <div class="contact-info">
                             <h4>WhatsApp Support</h4>
-                            <p><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></p>
+                            <p>+91 7878275108</p>
                             <p style="font-size:0.7rem;">Tournament queries & registration help</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item"
+                        onclick="window.location.href='mailto:support@matchupapp.com?subject=Tournament%20Support%20Request&body=Hello,%20I%20need%20assistance%20with'">
                         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-info">
                             <h4>Email</h4>
-                            <p><a href="mailto:support@eliteesports.com">support@eliteesports.com</a></p>
+                            <p>support@matchupapp.com</p>
                             <p style="font-size:0.7rem;">24hr response time</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="window.open('https://discord.gg/elite-esports', '_blank')">
                         <div class="contact-icon"><i class="fab fa-discord"></i></div>
                         <div class="contact-info">
                             <h4>Discord Community</h4>
-                            <p><a href="#">discord.gg/elite-esports</a></p>
+                            <p>discord.gg/elite-esports</p>
                             <p style="font-size:0.7rem;">Live chat & announcements</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" onclick="window.location.href='tel:+917404425936'">
                         <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                         <div class="contact-info">
                             <h4>Emergency Contact</h4>
-                            <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                            <p>+91 7404425936</p>
                             <p style="font-size:0.7rem;">For urgent match issues</p>
                         </div>
                     </div>
@@ -969,7 +995,7 @@
         </div>
 
         <div class="footer-copyright">
-            <i class="fas fa-shield-alt"></i> Secure Payments via UPI • All registrations verified • © 2024 Elite Series
+            <i class="fas fa-shield-alt"></i> &copy; MatchUp 2026 Powered by www.rebuyly.com
         </div>
     </div>
 
@@ -982,16 +1008,9 @@
             </div>
             <div id="panelQr" class="panel">
                 <div class="qr-frame" id="qrDisplay">
-                    <svg viewBox="0 0 200 200">
-                        <rect width="200" height="200" fill="#fae6d8" rx="35" />
-                        <rect x="40" y="40" width="45" height="45" fill="#c97e5a" rx="8" />
-                        <rect x="115" y="40" width="45" height="45" fill="#c97e5a" rx="8" />
-                        <rect x="40" y="115" width="45" height="45" fill="#c97e5a" rx="8" />
-                        <circle cx="140" cy="140" r="18" fill="#c97e5a" />
-                        <text x="40" y="190" fill="#9b4b2c" font-size="15">ELITE</text>
-                    </svg>
+                    <img src="assets/qr/qrcode.png" alt="QR Code" srcset="">
                 </div>
-                <div class="upi-handle"><i class="fas fa-phone-alt"></i> elite@ybl</div>
+                <div class="upi-handle"><i class="fas fa-phone-alt"></i> iamkml@ikwik</div>
                 <div class="modal-fee-detail" id="feeMemo"><strong>₹10</strong> · SOLO entry</div>
                 <div class="slider-track" id="sliderTrack">
                     <div class="slider-thumb" id="sliderThumb"><i class="fas fa-chevron-right"></i></div>
@@ -1008,8 +1027,8 @@
                     <div class="form-group"><label>Your Name</label><input type="text" id="playerName"
                             class="form-control" required></div>
                     <div class="form-group"><label>Game Type</label>
-                        <div class="radio-group"><label><input type="radio" name="gameTypeRadio" value="PUBG" checked>
-                                PUBG</label><label><input type="radio" name="gameTypeRadio" value="Free Fire"> Free
+                        <div class="radio-group"><label><input type="radio" name="gameTypeRadio" value="BGMI" checked>
+                                BGMI</label><label><input type="radio" name="gameTypeRadio" value="Free Fire"> Free
                                 Fire</label></div>
                     </div>
                     <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="whatsapp"
@@ -1027,10 +1046,8 @@
     <script>
         (function () {
             // ========== GOOGLE SHEETS API URLS ==========
-            // REPLACE WITH YOUR ACTUAL DEPLOYED WEB APP URLs
             const SCHEDULE_API_URL = "https://script.google.com/macros/s/AKfycbwen37Dv9-W3a5XJS2LcX7Kyo54gqJ3fgkKqfZ0810HdsvmeuWGoU78FYFhv17S1IC_/exec";
             const REGISTRATION_API_URL = "https://script.google.com/macros/s/AKfycbzlmMZ72WFfssd5LgDMiy-QyLmaORhRO33DOPieWHFwcWszgJ43gm7OfJjth8M0h8cxkg/exec";
-
             // ========== SWIPER INITIALIZATION ==========
             new Swiper('.mySwiper', {
                 loop: true, autoplay: { delay: 4000 },
@@ -1041,34 +1058,38 @@
 
             // ========== TOURNAMENT CARDS ==========
             const tournaments = [
-                { mode: "PUBG SOLO", fee: "10", game: "pubg", img: "https://images.pexels.com/photos/163444/security-guard-facial-expression-boy-guard-163444.jpeg?auto=compress&cs=tinysrgb&w=600" },
-                { mode: "FREE FIRE SOLO", fee: "10", game: "ff", img: "https://images.pexels.com/photos/2161909/pexels-photo-2161909.jpeg?auto=compress&cs=tinysrgb&w=600" },
-                { mode: "PUBG SQUAD", fee: "50", game: "pubg", img: "https://images.pexels.com/photos/163460/game-fun-team-play-163460.jpeg?auto=compress&cs=tinysrgb&w=600" },
-                { mode: "FREE FIRE SQUAD", fee: "50", game: "ff", img: "https://images.pexels.com/photos/317155/pexels-photo-317155.jpeg?auto=compress&cs=tinysrgb&w=600" },
-                { mode: "PUBG TDM", fee: "30", game: "pubg", img: "https://images.pexels.com/photos/6992/forest-trees-nature-fog.jpg?auto=compress&cs=tinysrgb&w=600" },
-                { mode: "FREE FIRE TDM", fee: "30", game: "ff", img: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=600" }
+                { mode: "BGMI SOLO", fee: "10", game: "bgmi", img: "assets/img/pubg-solo.png" },
+                { mode: "BGMI SQUAD", fee: "40", game: "bgmi", img: "assets/img/pubg-squad.png" },
+                { mode: "BGMI TDM", fee: "50", game: "bgmi", img: "assets/img/pubg-tdm.png" },
+                { mode: "FREE FIRE SOLO", fee: "10", game: "ff", img: "assets/img/free-fire-solo.png" },
+                { mode: "FREE FIRE SQUAD", fee: "50", game: "ff", img: "assets/img/free-fire-squad.png" },
+                { mode: "FREE FIRE TDM", fee: "30", game: "ff", img: "assets/img/free-fire-tdm.png" }
             ];
 
             const cardsContainer = document.getElementById('tournamentCards');
             cardsContainer.innerHTML = tournaments.map(t => `
                 <div class="tourney-card" data-mode="${t.mode}" data-fee="${t.fee}">
-                    <div class="tournament-image"><img src="${t.img}" alt="${t.mode}"></div>
+                    <div class="tournament-image"><img src="${t.img}" alt="${t.mode}" onerror="this.src='https://via.placeholder.com/300x180?text=${t.mode}'"></div>
                     <div class="card-accents">
-                        <span class="game-tag ${t.game === 'pubg' ? 'pubg' : 'ff'}">
-                            <i class="${t.game === 'pubg' ? 'fab fa-battle-net' : 'fas fa-fire'}"></i> 
-                            ${t.game === 'pubg' ? 'PUBG' : 'FREE FIRE'}
+                        <span class="game-tag ${t.game}">
+                            <i class="${t.game === 'bgmi' ? 'fab fa-battle-net' : 'fas fa-fire'}"></i> 
+                            ${t.game === 'bgmi' ? 'BGMI' : 'FREE FIRE'}
                         </span>
                         <span class="game-tag">${t.mode.split(' ').pop()}</span>
                     </div>
                     <div class="card-mode">${t.mode}</div>
                     <div class="fee-structure">
-                        <div class="fee-amount">₹${t.fee} <small>${t.mode.includes('SQUAD') ? 'per member' : 'per player'}</small></div>
+                        <div class="fee-amount">₹${t.fee} <small>${t.mode.includes('SQUAD') ? 'per squad' : 'per player'}</small></div>
                     </div>
                     <div class="rules-section">
                         <ul class="rules-list">
-                            <li><i class="fas fa-crosshairs"></i> Fair play guaranteed</li>
-                            <li><i class="fas fa-clock"></i> Live support 24/7</li>
-                            <li><i class="fas fa-trophy"></i> Instant prize distribution</li>
+                            <li><i class="fas fa-crosshairs"></i> Room ID & Password match se 10 min pehle milega</li>
+                            <li><i class="fas fa-user-check"></i> Minimum level: Level 40+</li>
+                            <li><i class="fas fa-shield-alt"></i> Cheating is not allowed</li>
+                            <li><i class="fas fa-camera"></i> Kill proof / winner proof screenshot dena compulsory</li>
+                            <li><i class="fas fa-headset"></i> Live support 24/7</li>
+                            <li><i class="fas fa-trophy"></i> Prize distribution within 10 minutes after match</li>
+                            <li><i class="fas fa-file-alt"></i> Rules <a href="rules.html">Read More</a></li>
                         </ul>
                     </div>
                     <div class="btn-group">
@@ -1095,7 +1116,7 @@
                 });
             });
 
-            // ========== SCHEDULE MANAGEMENT - FIXED FOR CORS ==========
+            // ========== SCHEDULE MANAGEMENT ==========
             let scheduleData = [];
 
             function renderSchedule() {
@@ -1134,7 +1155,6 @@
                 `}).join('');
             }
 
-            // Fetch schedule using JSONP or proxy approach
             async function fetchScheduleFromGoogleSheets() {
                 const scheduleList = document.getElementById('scheduleList');
                 if (scheduleList) {
@@ -1142,83 +1162,30 @@
                 }
 
                 try {
-                    // Try to fetch with no-cors mode
-                    const response = await fetch(SCHEDULE_API_URL, {
-                        method: 'GET',
-                        mode: 'no-cors',
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    // With no-cors, we can't read the response body
-                    // So we'll use a different approach: use a proxy or load from localStorage/cache
-                    console.log('Using no-cors mode - checking cache');
-
-                    // Check if we have cached data
                     const cached = localStorage.getItem('tournament_schedule');
                     if (cached) {
                         scheduleData = JSON.parse(cached);
                         renderSchedule();
                         console.log('📦 Using cached schedule data');
                     } else {
-                        // Fallback to demo data
                         scheduleData = [
-                            { match_name: "PUBG SOLO", date: "March 22, 2025", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
-                            { match_name: "FREE FIRE SQUAD", date: "March 22, 2025", time: "09:00 PM", status: "live", prize: "₹15,000" },
-                            { match_name: "PUBG TDM", date: "March 23, 2025", time: "06:30 PM", status: "upcoming", prize: "₹3,000" },
+                            { match_name: "BGMI SOLO", date: "March 28, 2026", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
+                            { match_name: "FREE FIRE SQUAD", date: "March 29, 2026", time: "09:00 PM", status: "upcoming", prize: "₹15,000" },
+                            { match_name: "BGMI TDM", date: "March 30, 2026", time: "06:30 PM", status: "upcoming", prize: "₹3,000" }
                         ];
                         renderSchedule();
                         console.log('📋 Using demo schedule data');
                     }
                 } catch (error) {
                     console.error("Error fetching schedule:", error);
-                    const cached = localStorage.getItem('tournament_schedule');
-                    if (cached) {
-                        scheduleData = JSON.parse(cached);
-                        renderSchedule();
-                    } else {
-                        scheduleData = [
-                            { match_name: "PUBG SOLO", date: "March 22, 2025", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
-                            { match_name: "FREE FIRE SQUAD", date: "March 22, 2025", time: "09:00 PM", status: "live", prize: "₹15,000" }
-                        ];
-                        renderSchedule();
-                    }
-                }
-            }
-
-            // Alternative: Use a CORS proxy (if needed)
-            // You can use this URL pattern: https://cors-anywhere.herokuapp.com/YOUR_URL
-            async function fetchScheduleWithProxy() {
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-                const targetUrl = SCHEDULE_API_URL;
-
-                try {
-                    const response = await fetch(proxyUrl + targetUrl);
-                    const data = await response.json();
-                    console.log('Data via proxy:', data);
-
-                    if (data && data.schedule) {
-                        scheduleData = data.schedule;
-                        localStorage.setItem('tournament_schedule', JSON.stringify(scheduleData));
-                        renderSchedule();
-                    }
-                } catch (error) {
-                    console.error('Proxy fetch failed:', error);
-                }
-            }
-
-            // Manual update function for admin to paste data
-            window.updateScheduleManually = function (newSchedule) {
-                if (newSchedule && Array.isArray(newSchedule)) {
-                    scheduleData = newSchedule;
-                    localStorage.setItem('tournament_schedule', JSON.stringify(scheduleData));
+                    scheduleData = [
+                        { match_name: "BGMI SOLO", date: "March 28, 2026", time: "07:00 PM", status: "upcoming", prize: "₹5,000" },
+                        { match_name: "FREE FIRE SQUAD", date: "March 29, 2026", time: "09:00 PM", status: "upcoming", prize: "₹15,000" }
+                    ];
                     renderSchedule();
-                    alert('Schedule updated successfully!');
                 }
-            };
+            }
 
-            // Refresh button
             document.getElementById('refreshScheduleBtn')?.addEventListener('click', () => {
                 fetchScheduleFromGoogleSheets();
                 const btn = document.getElementById('refreshScheduleBtn');
@@ -1231,14 +1198,12 @@
             // ========== REGISTRATION FORM ==========
             async function submitRegistrationToGoogleSheets(formData) {
                 try {
-                    // Use no-cors for POST as well
                     await fetch(REGISTRATION_API_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formData)
                     });
-
                     let registrations = JSON.parse(localStorage.getItem('tournament_registrations') || '[]');
                     registrations.push(formData);
                     localStorage.setItem('tournament_registrations', JSON.stringify(registrations));
@@ -1346,7 +1311,7 @@
 
                 try {
                     await submitRegistrationToGoogleSheets(formData);
-                    alert('✅ Registration Successful! Your details have been saved. Further information will be send on WhatsApp');
+                    alert('✅ Registration Successful! Your details have been saved. Further information will be provided to you via WhatsApp');
                     overlay.classList.remove('active');
                     document.getElementById('registrationForm').reset();
                     panelQr.classList.remove('hidden');
@@ -1366,9 +1331,26 @@
             fetchScheduleFromGoogleSheets();
 
             console.log('🚀 Tournament System Ready!');
-            console.log('💡 NOTE: Due to CORS, schedule data is loaded from local cache.');
-            console.log('💡 To update schedule, modify the scheduleData array manually or use updateScheduleManually()');
         })();
+
+        // ========== CURRENT DAY DISPLAY ==========
+        function getCurrentDay() {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const today = new Date();
+            return days[today.getDay()];
+        }
+
+        document.getElementById('currentDayDisplay').textContent = getCurrentDay();
+
+        function updateDayAtMidnight() {
+            const now = new Date();
+            const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
+            setTimeout(() => {
+                document.getElementById('currentDayDisplay').textContent = getCurrentDay();
+                updateDayAtMidnight();
+            }, msUntilMidnight);
+        }
+        updateDayAtMidnight();
     </script>
 </body>
 
