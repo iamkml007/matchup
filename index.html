@@ -381,6 +381,7 @@
 
             <form id="preRegisterForm">
                 <div class="form-group">
+                    <input type="hidden" id="referby" name="hiddenName">
                     <label><i class="fas fa-user"></i> Full Name <span class="required">*</span></label>
                     <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
                     <div class="error-message" id="nameError">Please enter a valid name (min 3 characters)</div>
@@ -433,9 +434,21 @@
     </div>
 
     <script>
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const nameFromURL = urlParams.get('referby');
+        
+        if (nameFromURL) {
+            document.getElementById('hiddenName').value = nameFromURL;
+        } else {
+            document.getElementById('hiddenName').value = 0;
+        }
+
+        
         // ========== GOOGLE SHEETS API URL ==========
         // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbwUVNHKlRlpvHOWE63nBYKyExDKWWYkwDI3cIe1NgIaxfzryLCkce9Qpj2I-FZQiSCC/exec";
+        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbwWwP7eyK6LYb6JE9R15hStGAAdKuqN_fUJbjoXHpJLG_SjCoGKFnr1SOhjQQUvw84/exec";
 
         // ========== LAUNCH DATE: APRIL 1, 2026 ==========
         const launchDate = new Date(2026, 3, 1, 0, 0, 0); // Month is 0-indexed, so 3 = April
@@ -522,6 +535,21 @@
         }
 
         // Real-time validation
+        // Get URL parameters
+        // Get referral code from URL and set to hidden field
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const nameFromURL = urlParams.get('referby');
+        
+        const referbyField = document.getElementById('referby');
+        if (referbyField) {
+            if (nameFromURL && nameFromURL !== '') {
+                referbyField.value = nameFromURL;
+            } else {
+                referbyField.value = 0;
+            }
+        }
+        
         document.getElementById('fullName').addEventListener('input', function () {
             showError('fullName', 'nameError', validateName(this.value));
         });
