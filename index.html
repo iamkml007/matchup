@@ -434,21 +434,10 @@
     </div>
 
     <script>
-
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const nameFromURL = urlParams.get('referby');
-        
-        if (nameFromURL) {
-            document.getElementById('hiddenName').value = nameFromURL;
-        } else {
-            document.getElementById('hiddenName').value = 0;
-        }
-
         
         // ========== GOOGLE SHEETS API URL ==========
         // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbwWwP7eyK6LYb6JE9R15hStGAAdKuqN_fUJbjoXHpJLG_SjCoGKFnr1SOhjQQUvw84/exec";
+        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbzs9DNuMYeZu1DINrISecu6A4BQkBZ5O1zGScblo07a94FOEZ4cqBP2UUiL0Zo7qrBh/exec";
 
         // ========== LAUNCH DATE: APRIL 1, 2026 ==========
         const launchDate = new Date(2026, 3, 1, 0, 0, 0); // Month is 0-indexed, so 3 = April
