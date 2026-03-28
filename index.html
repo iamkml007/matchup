@@ -434,10 +434,10 @@
     </div>
 
     <script>
-        
+
         // ========== GOOGLE SHEETS API URL ==========
         // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbzs9DNuMYeZu1DINrISecu6A4BQkBZ5O1zGScblo07a94FOEZ4cqBP2UUiL0Zo7qrBh/exec";
+        const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbzbbL7JsRPBXzdCzx5xoSL4CH9ZWfAjbtriuUY-dCmarx__EYrJemna2STebdUusy4Z/exec";
 
         // ========== LAUNCH DATE: APRIL 1, 2026 ==========
         const launchDate = new Date(2026, 3, 1, 0, 0, 0); // Month is 0-indexed, so 3 = April
@@ -529,7 +529,7 @@
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const nameFromURL = urlParams.get('referby');
-        
+
         const referbyField = document.getElementById('referby');
         if (referbyField) {
             if (nameFromURL && nameFromURL !== '') {
@@ -538,7 +538,7 @@
                 referbyField.value = 0;
             }
         }
-        
+
         document.getElementById('fullName').addEventListener('input', function () {
             showError('fullName', 'nameError', validateName(this.value));
         });
@@ -582,7 +582,6 @@
 
                 return true;
             } catch (error) {
-                console.error('Error submitting to Google Sheets:', error);
                 // Store locally if Google Sheets fails
                 let registrations = JSON.parse(localStorage.getItem('pre_registrations') || '[]');
                 registrations.push(formData);
@@ -596,6 +595,7 @@
             e.preventDefault();
 
             // Get values
+            const referby = document.getElementById('referby').value.trim();
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const gameId = document.getElementById('gameId').value.trim();
@@ -623,6 +623,7 @@
             // Prepare data for Google Sheets
             const formData = {
                 timestamp: new Date().toISOString(),
+                referby: nameFromURL,
                 fullName: fullName,
                 email: email,
                 gameId: gameId,
@@ -631,7 +632,6 @@
                 registrationType: 'pre-registration',
                 status: 'pending'
             };
-
             // Disable submit button
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
@@ -671,11 +671,6 @@
                 submitBtn.disabled = false;
             }
         });
-
-        // ========== ADD SOME STYLES FOR READ ONLY LINK ==========
-        console.log('🚀 Pre-Registration Page Loaded');
-        console.log('📅 Launch Date: April 1, 2026');
-        console.log('💾 Data will be saved to Google Sheets and localStorage');
     </script>
 </body>
 
